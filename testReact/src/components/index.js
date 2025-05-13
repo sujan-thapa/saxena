@@ -1,0 +1,1 @@
+export default {Education as Education} from
