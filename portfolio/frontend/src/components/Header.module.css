@@ -1,218 +1,125 @@
 /* Base Styles */
 .header {
+  /* background: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: fixed;
+  width: 100%;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  z-index: 100; */
+  background: white;
+  padding: 1rem 0;
+  /* display: flex; */
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.scrolled {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.98);
-}
-
-.headerContainer {
-  max-width: 1200px;
+.container {
+  max-width: 100%;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Logo Styles */
-.logoWrapper {
+/* Logo */
+.logo {
   display: flex;
   align-items: center;
-}
-
-.logoLink {
-  display: flex;
-  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
   text-decoration: none;
-  color: inherit;
+  color: #333;
 }
 
-.logoMark {
-  display: inline-flex;
+.logo span:first-child {
+  background: #3a86ff;
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: #3a86ff;
-  color: white;
-  font-weight: 700;
-  border-radius: 8px;
-  margin-right: 12px;
-  font-size: 1.1rem;
-}
-
-.logoName {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #333;
+  border-radius: 5px;
 }
 
 /* Desktop Navigation */
 .desktopNav {
   display: flex;
-}
-
-.navList {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
   gap: 1.5rem;
 }
 
-.navLink {
+.link {
   text-decoration: none;
   color: #555;
-  font-weight: 500;
-  font-size: 1rem;
   position: relative;
-  padding: 0.5rem 0;
-  transition: color 0.2s ease;
+  padding-bottom: 0.25rem;
 }
 
-.navLink:hover {
+.link:hover {
   color: #3a86ff;
 }
 
-.navLink.active {
+.link.active {
   color: #3a86ff;
+  font-weight: 500;
 }
 
-.navLink.active::after {
+.link.active::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #3a86ff;
+  background: #3a86ff;
 }
 
 /* Mobile Menu Button */
-.mobileMenuButton {
-  display: none;
+.menuButton {
   background: none;
   border: none;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.5rem;
-  z-index: 1001;
-}
-
-.mobileMenuButton span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: #333;
-  margin: 5px 0;
-  transition: all 0.3s ease;
-}
-
-.mobileMenuButton.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.mobileMenuButton.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.mobileMenuButton.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  display: none;
 }
 
 /* Mobile Navigation */
 .mobileNav {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 80%;
-  max-width: 300px;
-  height: 100vh;
-  background-color: white;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-  transition: right 0.3s ease;
-  padding-top: 5rem;
-  z-index: 1000;
-}
-
-.mobileNav.open {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
   right: 0;
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.mobileNavList {
-  list-style: none;
-  padding: 0 2rem;
-  margin: 0;
-}
-
-.mobileNavItem {
-  margin-bottom: 1.5rem;
-}
-
-.mobileNavLink {
+.mobileLink {
   text-decoration: none;
   color: #333;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  padding: 0.5rem;
 }
 
-.mobileNavLink:hover,
-.mobileNavLink.active {
+.mobileLink:hover {
   color: #3a86ff;
 }
 
-/* Responsive Styles */
+/* Responsive */
 @media (max-width: 768px) {
   .desktopNav {
     display: none;
   }
 
-  .mobileMenuButton {
+  .menuButton {
     display: block;
   }
 
-  .headerContainer {
-    padding: 1rem;
-  }
-}
-
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .header {
-    background-color: rgba(20, 20, 20, 0.96);
-  }
-
-  .scrolled {
-    background-color: rgba(20, 20, 20, 0.98);
-  }
-
-  .logoName {
-    color: #f0f0f0;
-  }
-
-  .navLink {
-    color: #ccc;
-  }
-
-  .mobileMenuButton span {
-    background-color: #f0f0f0;
-  }
-
   .mobileNav {
-    background-color: #121212;
-  }
-
-  .mobileNavLink {
-    color: #f0f0f0;
+    display: flex;
   }
 }

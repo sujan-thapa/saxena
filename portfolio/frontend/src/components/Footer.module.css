@@ -1,0 +1,16 @@
+.footer {
+    width: 100%;
+    padding: 20px;
+    border-top: 1px solid #c7c4c4;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f1f1f1; /* Uncommented */
+    
+    /* Improved height handling */
+    min-height: 200px;
+    height: auto; /* Allows footer to grow if content exceeds 100px */
+    
+    /* For sticky footer behavior */
+    margin-top: auto;
+}

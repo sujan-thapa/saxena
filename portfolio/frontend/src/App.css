@@ -1,0 +1,15 @@
+/* App.css */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.myApp {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContent {
+    flex: 1; /* This makes the content expand and push footer down */
+}

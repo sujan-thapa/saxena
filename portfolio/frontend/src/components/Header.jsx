@@ -3,121 +3,61 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location]);
-
-  // Add scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Toggle mobile menu
+  const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+  const closeMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
-      <div className={styles.headerContainer}>
-        {/* Logo with your name */}
-        <div className={styles.logoWrapper}>
-          <Link to="/" className={styles.logoLink}>
-            <span className={styles.logoMark}>ST</span>
-            <span className={styles.logoName}>Sujan Thapa</span>
-          </Link>
-        </div>
+    <header className={styles.header}>
+      <div className={styles.container}>
 
-        {/* Desktop Navigation */}
+        {/* Logo */}
+        <Link to="/" className={styles.logo}>
+          <span>ST</span>
+          <span>Sujan Thapa</span>
+        </Link>
+
+        {/* Desktop Nav */}
         <nav className={styles.desktopNav}>
-          <ul className={styles.navList}>
-            <li className={styles.navItem}>
-              <Link 
-                to="/" 
-                className={`${styles.navLink} ${location.pathname === '/' ? styles.active : ''}`}
-              >
-                Home
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link 
-                to="/resume" 
-                className={`${styles.navLink} ${location.pathname === '/resume' ? styles.active : ''}`}
-              >
-                Resume
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link 
-                to="/outreach" 
-                className={`${styles.navLink} ${location.pathname === '/outreach' ? styles.active : ''}`}
-              >
-                Outreach
-              </Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link 
-                to="/personal" 
-                className={`${styles.navLink} ${location.pathname === '/personal' ? styles.active : ''}`}
-              >
-                Personal
-              </Link>
-            </li>
-          </ul>
+          <Link to="/resume" className={`${styles.link} ${location.pathname === '/resume' && styles.active}`}>
+            Resume
+          </Link>
+          <Link to="/research" className={`${styles.link} ${location.pathname === '/research' && styles.active}`}>
+            Research
+          </Link>
+          <Link to="/outreach" className={`${styles.link} ${location.pathname === '/outreach' && styles.active}`}>
+            Outreach
+          </Link>
+          <Link to="/personal" className={`${styles.link} ${location.pathname === '/personal' && styles.active}`}>
+            Personal
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
-        <button 
-          className={`${styles.mobileMenuButton} ${mobileMenuOpen ? styles.open : ''}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle navigation menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
+        <button className={styles.menuButton} onClick={toggleMenu}>
+          ☰
         </button>
 
-        {/* Mobile Navigation */}
-        <div className={`${styles.mobileNav} ${mobileMenuOpen ? styles.open : ''}`}>
-          <ul className={styles.mobileNavList}>
-            <li className={styles.mobileNavItem}>
-              <Link 
-                to="/" 
-                className={`${styles.mobileNavLink} ${location.pathname === '/' ? styles.active : ''}`}
-              >
-                Home
-              </Link>
-            </li>
-            <li className={styles.mobileNavItem}>
-              <Link 
-                to="/resume" 
-                className={`${styles.mobileNavLink} ${location.pathname === '/resume' ? styles.active : ''}`}
-              >
-                Resume
-              </Link>
-            </li>
-            <li className={styles.mobileNavItem}>
-              <Link 
-                to="/outreach" 
-                className={`${styles.mobileNavLink} ${location.pathname === '/outreach' ? styles.active : ''}`}
-              >
-                Outreach
-              </Link>
-            </li>
-            <li className={styles.mobileNavItem}>
-              <Link 
-                to="/personal" 
-                className={`${styles.mobileNavLink} ${location.pathname === '/personal' ? styles.active : ''}`}
-              >
-                Personal
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {/* Mobile Nav */}
+        {mobileMenuOpen && (
+          <div className={styles.mobileNav}>
+            <Link to="/" className={styles.mobileLink} onClick={closeMenu}>
+              Home
+            </Link>
+            <Link to="/resume" className={styles.mobileLink} onClick={closeMenu}>
+              Resume
+            </Link>
+            <Link to="/outreach" className={styles.mobileLink} onClick={closeMenu}>
+              Outreach
+            </Link>
+            <Link to="/personal" className={styles.mobileLink} onClick={closeMenu}>
+              Personal
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );
