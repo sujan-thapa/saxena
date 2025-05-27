@@ -8,23 +8,26 @@ import './App.css';
 
 function App() {
   return (
-    <ThemeProvider>
-      <TaskProvider>
-        <div className="App">
-          <h1>Task Manager</h1>
-          <div className="app-container">
-            <div className="left-panel">
-              <Timer />
-              <TaskStats />
-            </div>
-            <div className="right-panel">
-              <TaskInput />
-              <TaskList />
+    <main>
+      <ThemeProvider>
+        <TaskProvider>
+          <div className="App">
+            <h1>Task Manager</h1>
+            <div className="app-container">
+              <div className="left-panel">
+                <Timer />
+                <TaskStats />
+              </div>
+              <div className="right-panel">
+                <TaskInput />
+                <TaskList />
+              </div>
             </div>
           </div>
-        </div>
-      </TaskProvider>
-    </ThemeProvider>
+        </TaskProvider>
+      </ThemeProvider>
+    </main>
+
   );
 }
 
