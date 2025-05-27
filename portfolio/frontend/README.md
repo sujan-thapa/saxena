@@ -91,4 +91,4 @@ The `Resume` page displays link to download resume.
 https://github.com/sujan-thapa/saxena/tree/master/portfolio/frontend 
 
 ## Vercel Link
-<!-- Add your deployed Vercel link here -->
+https://saxena-kmsn.vercel.app/ 
