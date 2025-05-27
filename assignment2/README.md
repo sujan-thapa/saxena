@@ -66,8 +66,7 @@ This project makes extensive use of React hooks:
 
 ## Theming
 
-- Click the theme toggle button (🌙/☀️) in the top-right corner to switch between light and dark mode.  
-- Your preference is saved for future visits.
+- Click the theme toggle button in the top-right corner to switch between light and dark mode.  
 
 ---
 
@@ -76,6 +75,9 @@ Feel free to explore the code and extend the functionality!
 ## Screenshots of the Dashboard Interface
 ![alt text](image.png)  - in light theme
 ![alt text](image-2.png)- in dark theme
+
+## Vercel Link
+https://assignment2-ten-kohl.vercel.app/ 
 
 
 
