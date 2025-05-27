@@ -46,12 +46,17 @@ function reducer(state, action) {
 }
 
 const TaskList = () => {
-  const { tasks, deleteTask, toggleTaskStatus, reorderTasks } = useTasks();
+  const { tasks, deleteTask, toggleTaskStatus, reorderTasks, updateTask } = useTasks();
 
   // Filtering and sorting state
   const [filter, setFilter] = useState('all');
   const [sortBy, setSortBy] = useState('created_at');
   const [sortOrder, setSortOrder] = useState('asc');
+
+  // Edit state
+  const [editingTaskId, setEditingTaskId] = useState(null);
+  const [editTitle, setEditTitle] = useState('');
+  const [editDescription, setEditDescription] = useState('');
 
   // Timer reducer (optional, for per-task timers)
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -146,6 +151,30 @@ const TaskList = () => {
     toggleTaskStatus(taskId);
   };
 
+  // Edit handlers
+  const handleEditClick = (task) => {
+    setEditingTaskId(task.id);
+    setEditTitle(task.title);
+    setEditDescription(task.description || '');
+  };
+
+  const handleEditCancel = () => {
+    setEditingTaskId(null);
+    setEditTitle('');
+    setEditDescription('');
+  };
+
+  const handleEditSave = (taskId) => {
+    if (editTitle.trim() === '') {
+      alert('Title cannot be empty');
+      return;
+    }
+    updateTask(taskId, editTitle, editDescription);
+    setEditingTaskId(null);
+    setEditTitle('');
+    setEditDescription('');
+  };
+
   return (
     <div>
       <div className="task-controls">
@@ -185,27 +214,53 @@ const TaskList = () => {
               onDragOver={handleDragOver}
               onDrop={() => handleDrop(task.id)}
             >
-              <div className="task-content">
-                <h3>{task.title}</h3>
-                {task.description && <p>{task.description}</p>}
-                <div className="task-status">
-                  Status: {task.is_completed ? 'Completed' : 'Pending'}
+              {editingTaskId === task.id ? (
+                <div className="task-edit-form">
+                  <input
+                    type="text"
+                    value={editTitle}
+                    onChange={e => setEditTitle(e.target.value)}
+                    placeholder="Title"
+                  />
+                  <textarea
+                    value={editDescription}
+                    onChange={e => setEditDescription(e.target.value)}
+                    placeholder="Description"
+                  />
+                  <button onClick={() => handleEditSave(task.id)}>Save</button>
+                  <button onClick={handleEditCancel}>Cancel</button>
                 </div>
-              </div>
-              <div className="task-actions">
-                <button
-                  onClick={() => handleToggleStatus(task.id)}
-                  className="status-btn"
-                >
-                  {task.is_completed ? 'Mark Pending' : 'Mark Complete'}
-                </button>
-                <button
-                  onClick={() => handleDelete(task.id)}
-                  className="delete-btn"
-                >
-                  Delete
-                </button>
-              </div>
+              ) : (
+                <>
+                  <div className="task-content">
+                    <h3>{task.title}</h3>
+                    {task.description && <p>{task.description}</p>}
+                    <div className="task-status">
+                      Status: {task.is_completed ? 'Completed' : 'Pending'}
+                    </div>
+                  </div>
+                  <div className="task-actions">
+                    <button
+                      onClick={() => handleToggleStatus(task.id)}
+                      className="status-btn"
+                    >
+                      {task.is_completed ? 'Mark Pending' : 'Mark Complete'}
+                    </button>
+                    <button
+                      onClick={() => handleEditClick(task)}
+                      className="edit-btn"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(task.id)}
+                      className="delete-btn"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           ))
         )}
