@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage'; // Add this import
+import { createContext, useContext } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const TaskContext = createContext();
 
@@ -41,6 +41,11 @@ export const TaskProvider = ({ children }) => {
     );
   };
 
+  // Add this function for drag-and-drop reordering
+  const reorderTasks = newOrder => {
+    setTasks(newOrder);
+  };
+
   const getTaskStats = () => {
     const total = tasks.length;
     const completed = tasks.filter(task => task.is_completed).length;
@@ -56,6 +61,7 @@ export const TaskProvider = ({ children }) => {
         updateTask,
         deleteTask,
         toggleTaskStatus,
+        reorderTasks, // <-- Add this
         getTaskStats
       }}
     >

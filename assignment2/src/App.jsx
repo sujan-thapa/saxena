@@ -4,12 +4,14 @@ import TaskInput from './components/TaskInput';
 import TaskList from './components/TaskList';
 import TaskStats from './components/TaskStats';
 import Timer from './components/Timer';
+import ThemeToggle from './components/ThemeToggle';
 import './App.css';
 
 function App() {
   return (
     <main>
       <ThemeProvider>
+        <ThemeToggle />
         <TaskProvider>
           <div className="App">
             <h1>Task Manager</h1>
