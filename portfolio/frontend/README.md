@@ -2,12 +2,6 @@
 
 This is the frontend for my portfolio website, to showcase projects, skills, and experience.
 
-## Features
-
-- Responsive design
-- Project showcase
-- Modern UI/UX
-
 ## Tech Stack
 
 - React
@@ -35,7 +29,7 @@ npm run dev
 ## Project Structure
 
 ```
-frontend/
+src/
 ├── components/
 │   ├── FaviconGenerator.jsx
 │   ├── Footer.jsx
@@ -50,10 +44,10 @@ frontend/
 │   │   └── Project.jsx
 │   └── Resume/
 │       └── Resume.jsx
-├── public/
-├── src/
-├── package.json
-└── README.md
+├── App.jsx
+├── main.jsx
+├── App.css
+├── index.css
 ```
 
 ### Components
