@@ -26,11 +26,11 @@ const Header = () => {
             Resume
           </Link>
           <Link to="/research" className={`${styles.link} ${location.pathname === '/research' && styles.active}`}>
-            Research
+            Projects
           </Link>
-          <Link to="/outreach" className={`${styles.link} ${location.pathname === '/outreach' && styles.active}`}>
+          {/* <Link to="/outreach" className={`${styles.link} ${location.pathname === '/outreach' && styles.active}`}>
             Outreach
-          </Link>
+          </Link> */}
           <Link to="/personal" className={`${styles.link} ${location.pathname === '/personal' && styles.active}`}>
             Personal
           </Link>
