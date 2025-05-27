@@ -76,6 +76,9 @@ Feel free to explore the code and extend the functionality!
 ![alt text](image.png)  - in light theme
 ![alt text](image-2.png)- in dark theme
 
+## Github Repository Link
+https://github.com/sujan-thapa/saxena/tree/master/assignment2 
+
 ## Vercel Link
 https://assignment2-ten-kohl.vercel.app/ 
 
